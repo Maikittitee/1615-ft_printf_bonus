@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:35:53 by ktunchar          #+#    #+#             */
-/*   Updated: 2022/10/12 21:36:37 by ktunchar         ###   ########.fr       */
+/*   Updated: 2022/10/12 23:22:12 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 typedef struct s_what
 {
     int count;
-    int print_type;
+    char print_type;
 	int width;
     int minus;
     int	zero;

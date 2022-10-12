@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-static ft_init_format(t_what *format);
+static ft_init_format(t_what *format)
 {
 	format->count = 0;
     format->print_type = 0;
@@ -11,6 +11,20 @@ static ft_init_format(t_what *format);
 	format->hash = 0;
 	format->space = 0;
 	format->plus = 0;
+}
+
+static ft_check_flag(char *str, t_what *format)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] = '.')
+			format->dot = 1;
+		if (ft_isdigit(str[i]))
+			format->width = ft_atoi(str[i])	
+	}
 }
 
 int ft_printf(const char *str, ...)
@@ -32,7 +46,7 @@ int ft_printf(const char *str, ...)
 		{
 			ft_check_flag(str + i, format); //need declare
 			count += ft_print_flag(format, args); //need declare
-			ft_init_format(format); //need declare
+			ft_init_format(format);
 			i++;
 		}
 		else
