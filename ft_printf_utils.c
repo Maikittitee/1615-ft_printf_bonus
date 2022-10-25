@@ -1,10 +1,10 @@
 #include "ft_printf.h"
 
-void ft_putchar_count(char c, t_what stu)
+void ft_putchar_count(char c, t_what *stu)
 {
 	write(1, &c, 1);
-	stu.return_count ++;
-	stu.index++;
+	(stu->return_count)++;
+	//(stu->index)++;
 }
 
 // int	ft_pointer_count(unsigned long long n)

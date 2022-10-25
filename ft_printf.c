@@ -15,17 +15,18 @@ static void	ft_init_format(t_what *format)
 	format->plus = 0;
 }
 
-static int	is_type(char c,t_what stu)
+static int	is_type(char c,t_what *stu)
 {
-	char type_list[12] = "cspdouxX";
+	char type_list[9];
 	size_t	i;
 
 	i = 0;
+	strcpy(type_list,"cspdouxX"); //TODO : REMOVE THIS SH*T!
 	while (type_list[i])
 	{
 		if (type_list[i] == c)
 		{
-			stu.print_type = c;
+			stu->print_type = c;
 			return (1);
 		}
 		i++;
@@ -34,28 +35,33 @@ static int	is_type(char c,t_what stu)
 
 }
 
-static size_t	count_flag_len(const char *str, t_what stu)
+static size_t	count_flag_len(const char *str, t_what *stu)
 {
 	size_t	flag_len;
 
 	flag_len = 1;
-	while (str[stu.index] && !is_type(str[stu.index], stu))
+	while (str[stu->index] && !is_type(str[stu->index], stu))
 	{
-		stu.index++;
+		stu->index++;
 		flag_len++;
 	}
 	return (flag_len);
 }
 
-static void ft_check_flag(const char *str, t_what stu, va_list args)
+static void ft_check_flag(const char *str, t_what *stu, va_list args)
 {
 	size_t	flag_len;
 	char	*fstr;
 
-	stu.index++;
-	if (str[stu.index] == '%')
+	stu->index++;
+	if (str[stu->index] == '%')
 		ft_putchar_count('%', stu);
+	else
+	{
+		/* code */
 	flag_len = count_flag_len(str, stu);
+	}
+	
 
 }
 
@@ -71,11 +77,11 @@ int ft_printf(const char *str, ...)
 	{
 		if (str[stu.index] == '%')
 		{
-			ft_check_flag(str, stu, args);
+			ft_check_flag(str, &stu, args);
 			stu.index++;
 		}
 		else
-			ft_putchar_count(str[stu.index],stu);
+			ft_putchar_count(str[stu.index], &stu);
 		stu.index++;
 	}
 	return (stu.return_count);
@@ -85,9 +91,12 @@ int	main()
 {
 	t_what test;
 
-	ft_init_format(&test);
+	//test_printf("hello");
+	ft_printf("Hello %%  ---");
+
+//	ft_init_format(&test);
 
 	//ft_printf("wh%%at\n");
-	printf("%zu\n",count_flag_len("1234d",test));
+//	printf("%zu\n",count_flag_len("1234d",test));
 	//printf("%zu\n",is_type('d',test));
 }
